@@ -108,7 +108,7 @@ Les contributions sont les bienvenues ! Pour contribuer :
 ## Auteur
 
 **FOFANA ISSOUF**
-- GitHub : issouf14-DEV
+- GitHub : [issouf14-DEV](https://github.com/issouf14-DEV)
 - Email : fofanaissouf179@gmail.com
 
 
