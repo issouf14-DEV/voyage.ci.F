@@ -304,7 +304,7 @@ box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
 }
 
 .destination .gallerie .image:hover .description{
-transform: translateY(-150px);
+transform: translateY(-160px);
 }
 
 .destination .gallerie .description{
@@ -316,7 +316,7 @@ transform: translateY(-150px);
 }
 
 .destination .gallerie .image:hover img{
- transform: translateY(-150px);
+ transform: translateY(-160px);
 
 }
 
