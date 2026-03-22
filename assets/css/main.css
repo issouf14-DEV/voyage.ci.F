@@ -2,7 +2,7 @@
 
 :root {
     --primary-color: #f6d238;
-    --primary-dark: #e0be30; /* Darker shade for hover */
+    --primary-dark: #e0be30;
     --text-dark: #1a1a1a;
     --text-grey: #666;
     --bg-light: #f9f9f9;
@@ -20,6 +20,10 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -74,9 +78,60 @@ nav ul li a:hover {
     color: var(--text-dark);
 }
 
+nav ul li a.active {
+    color: var(--text-dark);
+    position: relative;
+}
+
+nav ul li a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
 .btn-header {
     display: flex;
     align-items: center;
+    gap: 1rem;
+}
+
+/* --- Hamburger --- */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background-color: var(--text-dark);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* --- Buttons --- */
@@ -93,6 +148,8 @@ nav ul li a:hover {
     align-items: center;
     gap: 0.5rem;
     box-shadow: 0 5px 15px rgba(246, 210, 56, 0.3);
+    text-decoration: none;
+    font-size: inherit;
 }
 
 .btn:hover {
@@ -114,6 +171,7 @@ nav ul li a:hover {
     position: relative;
     flex: 1;
     height: 500px;
+    min-width: 0;
 }
 
 .home-section .left img {
@@ -194,7 +252,7 @@ nav ul li a:hover {
 .video-bg {
     width: 50px;
     height: 50px;
-    background-image: url('../images/ci1.jpeg'); /* Make sure this exists or use ci2/ci3 */
+    background-image: url('../images/ci1.jpeg');
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -204,7 +262,6 @@ nav ul li a:hover {
     align-items: center;
     box-shadow: var(--shadow-soft);
 }
-/* Fallback if ci1 doesn't exist, though we moved all images so it should */
 
 .play-btn {
     width: 30px;
@@ -221,6 +278,55 @@ nav ul li a:hover {
 .see-video span {
     font-weight: 600;
     color: var(--text-dark);
+}
+
+.see-video:hover .play-btn {
+    background: var(--primary-color);
+}
+
+/* --- Video Modal --- */
+.video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-modal.active {
+    display: flex;
+}
+
+.video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+}
+
+.video-modal-content video {
+    width: 100%;
+    border-radius: var(--radius-lg);
+}
+
+.video-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.video-modal-close:hover {
+    color: var(--primary-color);
 }
 
 /* --- Destinations --- */
@@ -247,6 +353,10 @@ section.destination {
     color: var(--text-grey);
 }
 
+.nav-buttons {
+    gap: 0.5rem;
+}
+
 .nav-btn {
     width: 50px;
     height: 50px;
@@ -267,8 +377,9 @@ section.destination {
 
 .gallerie {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
+    overflow: hidden;
 }
 
 .image {
@@ -278,6 +389,7 @@ section.destination {
     height: 350px;
     cursor: pointer;
     box-shadow: var(--shadow-soft);
+    transition: var(--transition);
 }
 
 .image img {
@@ -299,10 +411,9 @@ section.destination {
     background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     color: var(--white);
     padding: 2rem 1.5rem 1.5rem;
-    transform: translateY(0); /* Fixed layout instead of hover reveal for better UX */
 }
 
-.image .description h1 {
+.image .description h2 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
 }
@@ -318,7 +429,7 @@ section.destination {
     text-align: center;
 }
 
-.best-trip p {
+.best-trip > p {
     color: var(--text-grey);
     margin-bottom: 3rem;
 }
@@ -427,6 +538,11 @@ section.destination {
     gap: 2rem;
 }
 
+.together .text p {
+    color: var(--text-grey);
+    max-width: 500px;
+}
+
 .input-group {
     display: flex;
     background: var(--white);
@@ -435,6 +551,12 @@ section.destination {
     padding: 0.3rem;
     width: 100%;
     max-width: 500px;
+    transition: var(--transition);
+}
+
+.input-group:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(246, 210, 56, 0.15);
 }
 
 .input-group input {
@@ -443,13 +565,23 @@ section.destination {
     flex: 1;
     outline: none;
     border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-success {
+    color: #27ae60;
+    font-weight: 600;
+    display: none;
+}
+
+.form-success.show {
+    display: block;
 }
 
 /* --- Footer --- */
 footer {
     background-color: #f1f1f1;
     padding: 3rem 8% 2rem;
-    margin-top: 0;
 }
 
 .footer-content {
@@ -459,10 +591,40 @@ footer {
     gap: 1.5rem;
 }
 
+.footer-links {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--text-grey);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--text-dark);
+}
+
 .right-footer {
     color: var(--text-grey);
     text-align: center;
     font-size: 0.9rem;
+}
+
+/* --- Scroll Animations --- */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* --- Responsive Media Queries --- */
@@ -470,15 +632,37 @@ footer {
     .home-section {
         flex-direction: column-reverse;
         text-align: center;
-        padding-top: 8rem; /* Account for fixed header */
+        padding-top: 2rem;
     }
 
     .home-section .left {
         width: 100%;
+        height: 400px;
         display: flex;
         justify-content: center;
+        gap: 1rem;
     }
-    
+
+    .home-section .left img {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+    }
+
+    .left-image-1 {
+        width: 280px;
+        height: 380px;
+    }
+
+    .left-image-2 {
+        width: 220px;
+        height: 300px;
+        border: 6px solid var(--white);
+        align-self: flex-end;
+    }
+
     .right h1 {
         font-size: 2.5rem;
     }
@@ -490,11 +674,52 @@ footer {
     .buttons {
         justify-content: center;
     }
+
+    .gallerie {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--white);
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav.open {
+        right: 0;
+    }
+
     nav ul {
-        display: none; /* Add mobile menu later if needed */
+        flex-direction: column;
+        text-align: center;
+        gap: 2.5rem;
+    }
+
+    nav ul li a {
+        font-size: 1.1rem;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .btn-reserver span {
+        display: none;
+    }
+
+    .btn-reserver {
+        padding: 0.8rem;
     }
 
     .desc-button {
@@ -503,17 +728,80 @@ footer {
         align-items: flex-start;
     }
 
-    .gallerie, .box-list {
+    .gallerie {
         grid-template-columns: 1fr;
     }
-    
+
+    .box-list {
+        grid-template-columns: 1fr;
+    }
+
+    .home-section .left {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .left-image-1 {
-        width: 280px;
-        height: 380px;
+        width: 100%;
+        max-width: 320px;
+        height: 300px;
     }
-    
+
     .left-image-2 {
-        width: 200px;
-        height: 250px;
+        width: 80%;
+        max-width: 260px;
+        height: 220px;
+        margin-top: -40px;
     }
+
+    .right h1 {
+        font-size: 2rem;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .input-group {
+        flex-direction: column;
+        border-radius: var(--radius-md);
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .input-group input {
+        padding: 0.8rem 1rem;
+        border-radius: var(--radius-md);
+    }
+
+    .input-group .btn {
+        border-radius: var(--radius-md);
+        justify-content: center;
+    }
+
+    .email-trip .container {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* Mobile overlay when nav is open */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 998;
+}
+
+.nav-overlay.active {
+    display: block;
 }

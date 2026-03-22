@@ -12,27 +12,32 @@
 <body>
   <header>
     <div class="logo-div">
-      <a href="#" class="logo">
-        <p>Voyage<span>.</span></p>
+      <a href="#accueil" class="logo">
+        <p>Voyage<span>.CI</span></p>
       </a>
     </div>
-    <nav>
+    <nav id="nav-menu">
       <ul>
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Destinations</a></li>
-        <li><a href="#">Avis</a></li>
-        <li><a href="#">Tarifs</a></li>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#gastronomie">Gastronomie</a></li>
+        <li><a href="#newsletter">Contact</a></li>
       </ul>
     </nav>
     <div class="btn-header">
-      <button class="btn">
+      <button class="btn btn-reserver">
         <i class="fa-solid fa-phone"></i>
         <span>Réserver</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
   </header>
 
-  <section class="home-section">
+  <section class="home-section" id="accueil">
     <div class="left">
       <img class="left-image-1" src="assets/images/ci2.jpeg" alt="Paysage Côte d'Ivoire">
       <img class="left-image-2" src="assets/images/ci3.jpeg" alt="Culture Ivoirienne">
@@ -44,11 +49,11 @@
       <p>Explorez la beauté de la Côte d'Ivoire, de ses plages dorées à ses forêts verdoyantes. Une expérience
         inoubliable vous attend.</p>
       <div class="buttons">
-        <button class="btn">
+        <a href="#destinations" class="btn">
           <span>Visitez</span>
-        </button>
+        </a>
 
-        <button class="see-video">
+        <button class="see-video" id="see-video-btn">
           <div class="video-bg">
             <div class="play-btn">
               <i class="fa-solid fa-play"></i>
@@ -60,53 +65,65 @@
     </div>
   </section>
 
-  <section class="destination">
+  <!-- Video Modal -->
+  <div class="video-modal" id="video-modal">
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="video-modal-close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <video id="modal-video" controls>
+        <source src="assets/images/v.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <section class="destination" id="destinations">
     <h1 class="title">Explorez les top destinations</h1>
     <div class="desc-button">
       <p>Découvrez des destinations fascinantes à travers la Côte d'Ivoire. Chaque lieu offre une expérience unique et
         mémorable.</p>
-      <div class="buttons">
-        <button class="nav-btn prev">
+      <div class="buttons nav-buttons">
+        <button class="nav-btn prev" id="gallery-prev" aria-label="Précédent">
           <i class="fa-solid fa-chevron-left"></i>
         </button>
-        <button class="nav-btn next second">
+        <button class="nav-btn next" id="gallery-next" aria-label="Suivant">
           <i class="fa-solid fa-chevron-right"></i>
         </button>
       </div>
     </div>
-    <div class="gallerie">
+    <div class="gallerie" id="gallerie">
       <div class="image">
         <img src="assets/images/kg.jpeg" alt="Korhogo">
         <div class="description">
-          <h1>Korhogo</h1>
+          <h2>Korhogo</h2>
           <p>Art du tissage et masques sacrés ivoiriens.</p>
         </div>
       </div>
       <div class="image">
         <img src="assets/images/man.jpeg" alt="Man">
         <div class="description">
-          <h1>Man</h1>
+          <h2>Man</h2>
           <p>Trésors antiques, et les célèbres cascades.</p>
         </div>
       </div>
       <div class="image">
         <img src="assets/images/yk.jpeg" alt="Yamoussoukro">
         <div class="description">
-          <h1>Yamoussoukro</h1>
+          <h2>Yamoussoukro</h2>
           <p>La basilique grandiose et les lacs aux caïmans.</p>
         </div>
       </div>
       <div class="image">
         <img src="assets/images/bk.jpeg" alt="Bouaké">
         <div class="description">
-          <h1>Bouaké</h1>
+          <h2>Bouaké</h2>
           <p>L'ambiance festive et le carnaval unique.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="best-trip">
+  <section class="best-trip" id="gastronomie">
     <h1 class="title">Explorez les plats de chez nous !</h1>
     <p>Une gastronomie riche et variée qui ravira vos papilles à chaque bouchée.</p>
     <div class="box-list">
@@ -114,7 +131,7 @@
         <img src="assets/images/c1.jpeg" alt="Garba">
         <div class="description">
           <h2>L'incontournable Garba</h2>
-          <p class="rating"><i class="fa-solid fa-star"></i>4.9</p>
+          <p class="rating"><i class="fa-solid fa-star"></i> 4.9</p>
           <div class="button-description">
             <span>Tarif <strong>1500f</strong></span>
             <button>Goûter</button>
@@ -125,7 +142,7 @@
         <img src="assets/images/g1.jpeg" alt="Foutou">
         <div class="description">
           <h2>Foutou Sauce Graine</h2>
-          <p class="rating"><i class="fa-solid fa-star"></i>4.8</p>
+          <p class="rating"><i class="fa-solid fa-star"></i> 4.8</p>
           <div class="button-description">
             <span>Tarif <strong>2500f</strong></span>
             <button>Goûter</button>
@@ -136,7 +153,7 @@
         <img src="assets/images/f1.jpeg" alt="Alloco">
         <div class="description">
           <h2>Alloco & Poisson</h2>
-          <p class="rating"><i class="fa-solid fa-star"></i>4.7</p>
+          <p class="rating"><i class="fa-solid fa-star"></i> 4.7</p>
           <div class="button-description">
             <span>Tarif <strong>2000f</strong></span>
             <button>Goûter</button>
@@ -149,32 +166,38 @@
     </div>
   </section>
 
-  <section>
-    <section class="email-trip">
-      <div class="container">
-        <h1 class="title">Rejoignez notre communauté</h1>
-        <div class="together">
-          <div class="text">
-            <p>Inscrivez-vous à notre newsletter pour recevoir les meilleures offres et des guides de voyage exclusifs.
-            </p>
-          </div>
-          <div class="input-group">
-            <input type="email" placeholder="Votre email ici">
-            <button class="btn">Envoyer</button>
-          </div>
+  <section class="email-trip" id="newsletter">
+    <div class="container">
+      <h1 class="title">Rejoignez notre communauté</h1>
+      <div class="together">
+        <div class="text">
+          <p>Inscrivez-vous à notre newsletter pour recevoir les meilleures offres et des guides de voyage exclusifs.</p>
         </div>
+        <form class="input-group" id="newsletter-form">
+          <input type="email" placeholder="Votre email ici" required>
+          <button type="submit" class="btn">Envoyer</button>
+        </form>
+        <p class="form-success" id="form-success">Merci pour votre inscription !</p>
       </div>
-    </section>
+    </div>
   </section>
 
   <footer>
     <div class="footer-content">
       <div class="logo-div">
-        <p>Voyage<span>.</span></p>
+        <p>Voyage<span>.CI</span></p>
+      </div>
+      <div class="footer-links">
+        <a href="#accueil">Accueil</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#gastronomie">Gastronomie</a>
+        <a href="#newsletter">Contact</a>
       </div>
       <p class="right-footer"><span>&copy; 2025 Voyage — L'aventure commence ici. Tous droits réservés.</span></p>
     </div>
   </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>
